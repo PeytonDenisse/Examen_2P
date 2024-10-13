@@ -40,23 +40,31 @@ export const createTarea = async (req: Request, res: Response) => {
 //put actualizar una tarea
 export const updateTarea = async (req: Request, res: Response) => {
     try {
-        const tarea = await Tarea.findByPk(req.params.id);
-        if (!tarea) return res.status(404).json({ message: 'Tarea no encontrada' });
-        await tarea.update(req.body);
-        res.json(tarea);
+        const { id } = req.params;
+        const tarea = await Tarea.findByPk(id);
+        if (tarea) {
+            tarea.update(req.body);
+            res.json(tarea);
+        } else {
+            res.status(404).json({ message: "Tarea no encontrada"});
+        }
     } catch (error) {
-        res.status(500).json({ message: "Tarea no actualzada" });
+        res.status(500).json({ message: "Hubo un error al actualizar la tarea"});
     }
 };
 
-//eliminar tarea 
+//delete eliminar una tarea
 export const deleteTarea = async (req: Request, res: Response) => {
     try {
-        const tarea = await Tarea.findByPk(req.params.id);
-        if (!tarea) return res.status(404).json({ message: 'Tarea no encontrada' });
-        await tarea.destroy();
-        res.status(204).end();
+        const { id } = req.params;
+        const tarea = await Tarea.findByPk(id);
+        if (tarea) {
+            tarea.destroy();
+            res.json({ message: "Tarea eliminada"});
+        } else {
+            res.status(404).json({ message: "Tarea no encontrada"});
+        }
     } catch (error) {
-        res.status(500).json({ message: "tarea no eliminada" });
+        res.status(500).json({ message: "Hubo un error al eliminar la tarea"});
     }
 };

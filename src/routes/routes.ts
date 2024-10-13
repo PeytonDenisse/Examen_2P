@@ -8,3 +8,5 @@ router.get('/tareas/:id', getTarea);
 router.post('/tareas', createTarea);
 router.put('/tareas/:id', updateTarea);
 router.delete('/tareas/:id', deleteTarea);
+
+export default router;
