@@ -48,3 +48,15 @@ export const updateTarea = async (req: Request, res: Response) => {
         res.status(500)
     }
 };
+
+//eliminar tarea 
+export const deleteTarea = async (req: Request, res: Response) => {
+    try {
+        const tarea = await Tarea.findByPk(req.params.id);
+        if (!tarea) return res.status(404).json({ message: 'Tarea no encontrada' });
+        await tarea.destroy();
+        res.json({message: "Tarea Eliminada"});
+    } catch (error) {
+        res.status(500)
+    }
+}
