@@ -25,4 +25,14 @@ export const getTarea = async (req: Request, res: Response) => {
             message: 'Hubo un error al obtener la tarea'
         });
     }
-}
+};
+
+//post crear una tarea
+export const createTarea = async (req: Request, res: Response) => {
+    try {
+        const nuevaTarea = await Tarea.create(req.body);
+        res.json(nuevaTarea);
+    } catch (error) {
+        res.status(500).json({ message: "Tarea no creada"});
+    }
+};
