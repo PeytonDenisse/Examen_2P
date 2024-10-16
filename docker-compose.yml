@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: examen_prueba2              
+    ports:
+      - "3307:3306"                  
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    environment:
+      DB_NAME: tareas
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_HOST: ${DB_HOST_DOCKER}
+    ports:
+      - "3005:3005"
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:

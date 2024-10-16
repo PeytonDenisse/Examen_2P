@@ -1,7 +1,6 @@
 import express from "express";
 import routes from './routes/routes';
-import bodyParser from 'body-parser';
-import { sequelize } from './database';
+import  sequelize  from './database';
 
 
 
@@ -10,7 +9,7 @@ app.use(express.json());
 
 app.use('/', routes);
 
-app.listen(3005, () => {
+app.listen(3000, () => {
     console.log('Servidor corriendo en el puerto 3005');
 });
 

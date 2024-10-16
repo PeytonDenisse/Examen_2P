@@ -11,12 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tarea = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-(0, sequelize_typescript_1.Table)({
-    tableName: 'todo_list'
-});
-//la tarea tiene ID Titulo Descripcion y completado
-class Tarea extends sequelize_typescript_1.Model {
-}
+let Tarea = class Tarea extends sequelize_typescript_1.Model {
+};
 exports.Tarea = Tarea;
 __decorate([
     (0, sequelize_typescript_1.Column)({
@@ -43,7 +39,13 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false,
     }),
     __metadata("design:type", Boolean)
 ], Tarea.prototype, "completed", void 0);
+exports.Tarea = Tarea = __decorate([
+    (0, sequelize_typescript_1.Table)({
+        tableName: 'todo_list'
+    })
+], Tarea);

@@ -41,11 +41,18 @@ exports.getTarea = getTarea;
 //post crear una tarea
 const createTarea = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const nuevaTarea = yield todo_list_1.Tarea.create(req.body);
-        res.json(nuevaTarea);
+        const { title, description, completed } = req.body;
+        const nuevaTarea = yield todo_list_1.Tarea.create({
+            title,
+            description,
+            completed
+        });
+        return res.status(201).json(nuevaTarea);
     }
     catch (error) {
-        res.status(500).json({ message: "Tarea no creada" });
+        return res.status(500).json({
+            message: "Hubo un error al crear la tarea",
+        });
     }
 });
 exports.createTarea = createTarea;

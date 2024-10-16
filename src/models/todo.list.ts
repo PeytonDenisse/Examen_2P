@@ -1,10 +1,8 @@
 import { Column, DataType, Model, Table } from "sequelize-typescript";
 
-Table({
+@Table({
     tableName: 'todo_list'
 })
-
-//la tarea tiene ID Titulo Descripcion y completado
 export class Tarea extends Model {
     @Column({
         type: DataType.INTEGER,
@@ -27,7 +25,8 @@ export class Tarea extends Model {
 
     @Column({
         type: DataType.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false, 
     })
     completed!: boolean;
 }

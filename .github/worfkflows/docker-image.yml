@@ -1,0 +1,27 @@
+name: Docker Build & Publish
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Clone Repository
+          uses: actions/checkout@v4
+
+        - name: Login to Docker Hub
+          run: docker login -u "${{secrets.DOCKER_USERNAME}}" -p "${{secrets.DOCKER_PASSWORD}}" 
+
+        - name: Build Docker Image
+          run: docker build -t mi_usuario_docker/examenprueba2-app:${{github.sha}} .
+
+        - name: Tag latest
+          run: docker tag mi_usuario_docker/examenprueba2-app:${{ github.sha }} mi_usuario_docker/examenprueba2-app:latest
+
+        - name: Push Docker Image
+          run: |
+            docker push mi_usuario_docker/examenprueba2-app:${{ github.sha }}
+            docker push mi_usuario_docker/examenprueba2-app:latest
