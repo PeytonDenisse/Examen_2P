@@ -26,6 +26,3 @@ jobs:
             docker push peytondenisse/todo-list:${{ github.sha }}
             docker push peytondenisse/todo-list:latest
 
-#eesta es una prueba para un commit 
-#esta es otra prueba de git actions 
-#esta es otra prueba de git actions
