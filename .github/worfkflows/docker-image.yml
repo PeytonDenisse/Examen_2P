@@ -16,15 +16,15 @@ jobs:
           run: docker login -u "${{secrets.DOCKER_USERNAME}}" -p "${{secrets.DOCKER_PASSWORD}}" 
 
         - name: Build Docker Image
-          run: docker build -t mi_usuario_docker/examenprueba2-app:${{github.sha}} .
+          run: docker build -t peytondenisse/todo-list:${{github.sha}} .
 
         - name: Tag latest
-          run: docker tag mi_usuario_docker/examenprueba2-app:${{ github.sha }} mi_usuario_docker/examenprueba2-app:latest
+          run: docker tag peytondenisse/todo-list:${{ github.sha }} peytondenisse/todo-list:latest
 
         - name: Push Docker Image
           run: |
-            docker push mi_usuario_docker/examenprueba2-app:${{ github.sha }}
-            docker push mi_usuario_docker/examenprueba2-app:latest
+            docker push peytondenisse/todo-list:${{ github.sha }}
+            docker push peytondenisse/todo-list:latest
 
 #eesta es una prueba para un commit 
 #esta es otra prueba de git actions 
