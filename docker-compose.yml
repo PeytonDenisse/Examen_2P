@@ -12,14 +12,14 @@ services:
       - mysql_data:/var/lib/mysql
 
   app:
-    build: .
+    image: peytondenisse/todo-list:latest
     environment:
       DB_NAME: tareas
       DB_USER: root
       DB_PASSWORD: root
       DB_HOST: ${DB_HOST_DOCKER}
     ports:
-      - "3005:3005"
+      - "3005:3000"
     depends_on:
       - mysql
 
