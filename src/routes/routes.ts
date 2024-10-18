@@ -17,6 +17,20 @@ app.get('/', async (req: Request, res: Response) => {
     }
 });
 
+//get tarea por id
+app.get('/:id', async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const tarea = await Tarea.findByPk(id);
+        if (tarea) {
+            res.json(tarea);
+        } else {
+            res.status(404).json({ message: "Tarea no encontrada" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Hubo un error al obtener la tarea" });
+    }
+});
 
 
 
